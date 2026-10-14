@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blockmancer — the cat wizard's block puzzle</title>
+<meta name="description" content="Drag, drop, cast spells! A cozy block puzzle adventure with a wizard cat. Free on Android and iPhone.">
+<meta property="og:title" content="Blockmancer 🐾 the cat wizard's block puzzle">
+<meta property="og:description" content="Clear lines, cast spells and beat cute monsters across 7 cities. Can you beat my score?">
+<meta property="og:image" content="https://memoli17.github.io/blockmancer/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://memoli17.github.io/blockmancer/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --ink:#1D2357; --cream:#FFF6E6; --blue:#2F5BD3; --green:#2EB15C; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; padding:16px;
+         background:radial-gradient(circle at 50% 25%, #2F5BD3, #151B4D 70%); color:#fff;
+         font:17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align:center; }
+  .card { background:var(--cream); color:var(--ink); border-radius:26px; padding:22px 20px 18px; max-width:440px; width:100%;
+          box-shadow:0 8px 0 rgba(10,16,60,.45); }
+  img.hero { width:100%; border-radius:16px; display:block; }
+  h1 { margin:14px 0 4px; font-size:28px; }
+  p { margin:6px 0 14px; }
+  .btn { display:block; margin:10px 0; padding:14px 16px; border-radius:16px; font-weight:800; text-decoration:none; color:#fff; font-size:18px; }
+  .play { background:var(--green); box-shadow:0 5px 0 #1C7A3E; }
+  .ios { background:var(--blue); box-shadow:0 5px 0 #1D3A99; }
+  .soon { background:#9AA3C7; box-shadow:none; }
+  small a { color:var(--blue); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="hero" src="og.jpg" alt="Blockmancer">
+    <h1>Blockmancer 🐾</h1>
+    <p id="tag">Drag, drop, cast spells! A cozy block puzzle adventure with a wizard cat.</p>
+    <a class="btn play" id="play" href="#">Get it on Google Play</a>
+    <a class="btn ios" id="ios" href="#">Download on the App Store</a>
+    <small><a href="privacy.html" id="priv">Privacy policy</a> · Mozi Tech Studios</small>
+  </div>
+<script>
+  // After the iPhone version is live, put its App Store number here (App Store Connect → App Information → Apple ID).
+  var APPLE_ID = '';
+  var PKG = 'com.mozitechstudios.blockmancer';
+  var play = 'https://play.google.com/store/apps/details?id=' + PKG;
+  var ios = APPLE_ID ? 'https://apps.apple.com/app/id' + APPLE_ID : '';
+  var tr = (navigator.language || '').toLowerCase().indexOf('tr') === 0;
+  if (tr) {
+    document.documentElement.lang = 'tr';
+    document.getElementById('tag').textContent = 'Sürükle, bırak, büyü yap! Büyücü kediyle tatlı bir blok bulmaca macerası.';
+    document.getElementById('play').textContent = "Google Play'den indir";
+    document.getElementById('ios').textContent = "App Store'dan indir";
+    document.getElementById('priv').textContent = 'Gizlilik politikası';
+  }
+  document.getElementById('play').href = play;
+  var iosBtn = document.getElementById('ios');
+  if (ios) { iosBtn.href = ios; } else { iosBtn.className = 'btn soon'; iosBtn.removeAttribute('href'); iosBtn.textContent = tr ? 'iPhone: çok yakında' : 'iPhone: coming soon'; }
+  // Friends who open a shared link on a phone go straight to their store.
+  var ua = navigator.userAgent || '';
+  if (/android/i.test(ua)) { setTimeout(function () { location.href = play; }, 900); }
+  else if (/iphone|ipad|ipod/i.test(ua) && ios) { setTimeout(function () { location.href = ios; }, 900); }
+</script>
+</body>
+</html>
